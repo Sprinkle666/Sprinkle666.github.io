@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="题目:求长度为2(n+m)的只含AB字符串中，可以分割为n个AB子序列和m个BA子序列的字符串个数。  题解:  贪心:每次增加的A必定先给AB子序列，增加的B必定先给BA dp[i][j]中,i为A的个数,j为B的个数当i!=0并且i小于等于n+j时,即当前A可被分配时,dp[i][j]+=dp[i-1][j]当j!=0并且j小于等于m+i时,即当前B可被分配时.dp[i][j]+=dp[i]">
+<meta name="description" content="这题dp居然这么简单，我太菜了!">
 <meta property="og:type" content="article">
 <meta property="og:title" content="牛客多校第一场E题">
 <meta property="og:url" content="http://yoursite.com/2019/07/19/MutiSchool-1/index.html">
 <meta property="og:site_name" content="Sprinkle">
-<meta property="og:description" content="题目:求长度为2(n+m)的只含AB字符串中，可以分割为n个AB子序列和m个BA子序列的字符串个数。  题解:  贪心:每次增加的A必定先给AB子序列，增加的B必定先给BA dp[i][j]中,i为A的个数,j为B的个数当i!=0并且i小于等于n+j时,即当前A可被分配时,dp[i][j]+=dp[i-1][j]当j!=0并且j小于等于m+i时,即当前B可被分配时.dp[i][j]+=dp[i]">
+<meta property="og:description" content="这题dp居然这么简单，我太菜了!">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-19T02:44:24.685Z">
+<meta property="og:updated_time" content="2019-07-19T02:54:18.297Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="牛客多校第一场E题">
-<meta name="twitter:description" content="题目:求长度为2(n+m)的只含AB字符串中，可以分割为n个AB子序列和m个BA子序列的字符串个数。  题解:  贪心:每次增加的A必定先给AB子序列，增加的B必定先给BA dp[i][j]中,i为A的个数,j为B的个数当i!=0并且i小于等于n+j时,即当前A可被分配时,dp[i][j]+=dp[i-1][j]当j!=0并且j小于等于m+i时,即当前B可被分配时.dp[i][j]+=dp[i]">
+<meta name="twitter:description" content="这题dp居然这么简单，我太菜了!">
 
 
 
@@ -299,7 +299,9 @@
       
 
       
-        <hr>
+        <p>这题dp居然这么简单，我太菜了!</p>
+<a id="more"></a>
+<hr>
 <p>题目:<br>求长度为2(n+m)的只含AB字符串中，可以分割为n个AB子序列和m个BA子序列的字符串个数。</p>
 <hr>
 <p>题解:</p>
