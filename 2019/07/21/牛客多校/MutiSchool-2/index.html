@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="这题dp居然这么简单，我太菜了!">
+<meta name="description" content="悬线法+单调栈">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2019牛客多校第一场E题">
-<meta property="og:url" content="http://yoursite.com/2019/07/19/牛客多校/MutiSchool-1/index.html">
+<meta property="og:title" content="2019牛客多校第二场H题">
+<meta property="og:url" content="http://yoursite.com/2019/07/21/牛客多校/MutiSchool-2/index.html">
 <meta property="og:site_name" content="Sprinkle">
-<meta property="og:description" content="这题dp居然这么简单，我太菜了!">
+<meta property="og:description" content="悬线法+单调栈">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-19T03:39:27.835Z">
+<meta property="og:updated_time" content="2019-07-21T08:27:20.450Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2019牛客多校第一场E题">
-<meta name="twitter:description" content="这题dp居然这么简单，我太菜了!">
+<meta name="twitter:title" content="2019牛客多校第二场H题">
+<meta name="twitter:description" content="悬线法+单调栈">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/07/19/牛客多校/MutiSchool-1/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/21/牛客多校/MutiSchool-2/">
 
 
 
 
 
-  <title>2019牛客多校第一场E题 | Sprinkle</title>
+  <title>2019牛客多校第二场H题 | Sprinkle</title>
   
 
 
@@ -242,7 +242,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/19/牛客多校/MutiSchool-1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/21/牛客多校/MutiSchool-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content>
@@ -259,7 +259,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">2019牛客多校第一场E题</h1>
+          <h1 class="post-title" itemprop="name headline">2019牛客多校第二场H题</h1>
         
 
         <div class="post-meta">
@@ -271,8 +271,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-19T10:18:55+08:00">
-                2019-07-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-21T14:16:55+08:00">
+                2019-07-21
               </time>
             
 
@@ -331,19 +331,26 @@
       
 
       
-        <p>这题dp居然这么简单，我太菜了!</p>
+        <p>悬线法+单调栈</p>
 <a id="more"></a>
 <hr>
-<p>题目:<br>求长度为2(n+m)的只含AB字符串中，可以分割为n个AB子序列和m个BA子序列的字符串个数。</p>
+<p>题目:<br>给一个只含01的矩阵，找出第二大只含1的子矩阵。</p>
 <hr>
 <p>题解:</p>
 <ul>
-<li>贪心:每次增加的A必定先给AB子序列，增加的B必定先给BA</li>
-<li>dp[i][j]中,i为A的个数,j为B的个数<br>当i!=0并且i小于等于n+j时,即当前A可被分配时,dp[i][j]+=dp[i-1][j]<br>当j!=0并且j小于等于m+i时,即当前B可被分配时.dp[i][j]+=dp[i][j-1]<br>答案即为dp[m+n][m+n]</li>
+<li><p>悬线法+单调栈</p>
+</li>
+<li><p>悬线法<br> 对于矩阵中每一个元素$dp[i][j]$为坐标$(i,j)$向上有多少个连续相同的元素，于是，初始化为:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for(int i=1;i&lt;=n;++i)&#123;</span><br><span class="line">    cin&gt;&gt;s;</span><br><span class="line">    for(int j=1;j&lt;=m;++j)&#123;</span><br><span class="line">        if(int(s[j-1]-&apos;0&apos;))dp[i][j]=dp[i-1][j]+1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>单调栈<br> 对于每一行向右扫描时，如果当前dp[i][j]小于栈顶元素，则把比它大的元素都弹出，并维护答案，最后扫描完毕后，再根据单调栈维护答案。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">    vector&lt;pair&lt;int, int&gt;&gt; stk;//first为长度，second为高度</span><br><span class="line">    for (int j = 1; j &lt;= m; ++j) &#123;</span><br><span class="line">        //维护单调栈</span><br><span class="line">        for (len = 0; !stk.empty() &amp;&amp; stk.back().second &gt;= dp[i][j]; stk.pop_back()) &#123;</span><br><span class="line">            int area = (stk.back().first + len) * stk.back().second;</span><br><span class="line">            len += stk.back().first;</span><br><span class="line">            //由于求解第二大子矩阵，加入原矩阵，分别把删除行列也加入</span><br><span class="line">            //维护答案:当前矩形面积，删掉一行后，删掉一列后</span><br><span class="line">            upd(area), upd(area - len), upd(area - stk.back().second);</span><br><span class="line">        &#125;</span><br><span class="line">        stk.push_back(&#123; len + 1, dp[i][j] &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    //清空单调栈，维护答案</span><br><span class="line">    for (int len = 0; !stk.empty(); stk.pop_back()) &#123;</span><br><span class="line">        int area = (stk.back().first + len) * stk.back().second;</span><br><span class="line">        len += stk.back().first;</span><br><span class="line">        upd(area), upd(area - len), upd(area - stk.back().second);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
 <hr>
-<p>核心代码:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">void solve()&#123;</span><br><span class="line">   ll n,m;</span><br><span class="line">   while(cin&gt;&gt;n&gt;&gt;m)&#123;</span><br><span class="line">      for(ll i=0;i&lt;=n+m;++i)</span><br><span class="line">         for(ll j=0;j&lt;=n+m;++j)</span><br><span class="line">            dp[i][j]=0;</span><br><span class="line">      dp[0][0]=1;</span><br><span class="line">      for(ll i=0;i&lt;=n+m;++i)&#123;</span><br><span class="line">         for(ll j=0;j&lt;=n+m;++j)&#123;</span><br><span class="line">            if(i&amp;&amp;i&lt;=n+j)dp[i][j]=(dp[i][j]+dp[i-1][j])%MOD;</span><br><span class="line">            if(j&amp;&amp;j&lt;=m+i)dp[i][j]=(dp[i][j]+dp[i][j-1])%MOD;</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      cout&lt;&lt;dp[m+n][m+n]&lt;&lt;endl;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>整体代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">#pragma GCC optimize(&quot;-O3&quot;)</span><br><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#define endl &apos;\n&apos;</span><br><span class="line">void solve();</span><br><span class="line">signed main()&#123;</span><br><span class="line">#ifdef Sprinkle</span><br><span class="line">   clock_t clock_start=clock();assert(freopen(&quot;test.txt&quot;,&quot;r&quot;,stdin));</span><br><span class="line">#else</span><br><span class="line">   ios::sync_with_stdio(false),cin.tie(0),cout.tie(0);</span><br><span class="line">#endif</span><br><span class="line">   solve();</span><br><span class="line">#ifdef Sprinkle</span><br><span class="line">   cerr&lt;&lt;&quot;Running Time: &quot;&lt;&lt;((clock()-clock_start) *1.0 / CLOCKS_PER_SEC)&lt;&lt;&quot;s\n&quot;;</span><br><span class="line">#endif</span><br><span class="line">&#125;</span><br><span class="line">int ans[2]=&#123;0,0&#125;;</span><br><span class="line">int dp[1005][1005];</span><br><span class="line">void upd(int x)&#123;</span><br><span class="line">    if(x&gt;ans[0])swap(x,ans[0]);</span><br><span class="line">    if(x&gt;ans[1])swap(x,ans[1]);</span><br><span class="line">&#125;</span><br><span class="line">void solve()&#123;</span><br><span class="line">    int n,m,len;</span><br><span class="line">    string s;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    for(int i=1;i&lt;=n;++i)&#123;</span><br><span class="line">        cin&gt;&gt;s;</span><br><span class="line">        for(int j=1;j&lt;=m;++j)&#123;</span><br><span class="line">            if(int(s[j-1]-&apos;0&apos;))dp[i][j]=dp[i-1][j]+1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">        vector&lt;pair&lt;int, int&gt;&gt; stk;</span><br><span class="line">        for (int j = 1; j &lt;= m; ++j) &#123;</span><br><span class="line">            for (len = 0; !stk.empty() &amp;&amp; stk.back().second &gt;= dp[i][j]; stk.pop_back()) &#123;</span><br><span class="line">                int area = (stk.back().first + len) * stk.back().second;</span><br><span class="line">                len += stk.back().first;</span><br><span class="line">                //原面积，删掉一行，删掉一列</span><br><span class="line">                upd(area), upd(area - len), upd(area - stk.back().second);</span><br><span class="line">            &#125;</span><br><span class="line">            stk.push_back(&#123; len + 1, dp[i][j] &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        for (int len = 0; !stk.empty(); stk.pop_back()) &#123;</span><br><span class="line">            int area = (stk.back().first + len) * stk.back().second;</span><br><span class="line">            len += stk.back().first;</span><br><span class="line">            upd(area), upd(area - len), upd(area - stk.back().second);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;min(ans[0],ans[1])&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
@@ -369,15 +376,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/07/19/牛客多校/MutiSchool-1/" rel="next" title="2019牛客多校第一场E题">
+                <i class="fa fa-chevron-left"></i> 2019牛客多校第一场E题
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/21/牛客多校/MutiSchool-2/" rel="prev" title="2019牛客多校第二场H题">
-                2019牛客多校第二场H题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
