@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Sprinkle">
 <meta property="og:description" content="悬线法+单调栈">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-21T08:27:20.450Z">
+<meta property="og:updated_time" content="2019-07-21T08:31:15.184Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019牛客多校第二场H题">
 <meta name="twitter:description" content="悬线法+单调栈">
@@ -340,7 +340,7 @@
 <ul>
 <li><p>悬线法+单调栈</p>
 </li>
-<li><p>悬线法<br> 对于矩阵中每一个元素$dp[i][j]$为坐标$(i,j)$向上有多少个连续相同的元素，于是，初始化为:</p>
+<li><p>悬线法<br> 对于矩阵中每一个元素dp[i][j]为坐标(i,j)向上有多少个连续相同的元素，于是，初始化为:</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for(int i=1;i&lt;=n;++i)&#123;</span><br><span class="line">    cin&gt;&gt;s;</span><br><span class="line">    for(int j=1;j&lt;=m;++j)&#123;</span><br><span class="line">        if(int(s[j-1]-&apos;0&apos;))dp[i][j]=dp[i-1][j]+1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>单调栈<br> 对于每一行向右扫描时，如果当前dp[i][j]小于栈顶元素，则把比它大的元素都弹出，并维护答案，最后扫描完毕后，再根据单调栈维护答案。</p>
